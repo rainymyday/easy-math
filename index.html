@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style scr=""></style>
+        <!-- <script>
+        let score = 0;
+        let level = 1;
+        let time = 10;    // Thời gian hiện tại
+        let fullTime = 10;// Thời gian cho phép toán.
+        let widthTime = 0;// Chiều dài thanh hiển thị thời gian
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+        
+        function getRandomOperator() {
+            let operators = ["+", "-", "*"];
+            let ran = Math.floor(Math.random() * operators.length);
+            return operators[ran];
+        }
+        
+        function generateCalculation() {
+            let number1 = getRandomNumber(1*level, 5*level);
+            let number2 = getRandomNumber(1*level, 5*level);
+            let op = getRandomOperator();
+            let cal = number1 + " " + op + " " + number2;
+           
+            document.getElementById("calculation").innerHTML = cal;
+            document.getElementById("result").innerHTML = getRandomResult();
+        }
+        
+        function getRandomResult() {
+            let randomResult = Math.random() >= 0.5;//tỉ lệ đúng sai 50:50
+            return randomResult ? getResult() : getFakeResult();
+        }
+        
+        function getResult() {
+            let cal = document.getElementById("calculation").innerHTML;
+            return eval(cal);
+        }
+        
+        function getFakeResult() {
+            let fakeResult = getRandomNumber(getResult() - 10, getResult() + 10);
+            return (fakeResult === getResult()) ? getFakeResult() : fakeResult;
+        }
+        function check(btn) {
+            let result = +document.getElementById("result").innerHTML;
+            let check = false;
+            switch (btn) {
+                case "true":
+                    if (result == getResult()) check = true;
+                    break;
+                case "false":
+                    if (result !== getResult()) check = true;
+                    break;
+            }
+        
+            check?nextLevel():gameOver();
+        }
+        function nextLevel() {
+            score += level;
+            level++;
+            time = fullTime;
+            document.getElementById("score").innerHTML = "Score: "+score;
+            document.getElementById("level").innerHTML = "Level: "+level;
+            document.getElementById("correct").play();
+            generateCalculation();
+        }
+        function gameOver() {
+            document.getElementById("true").style.display = "none";
+            document.getElementById("false").style.display = "none";
+            document.getElementById("wrong").play();
+            alert("Game Over. Your score is "+ score + ". Replay?");
+            location.reload();
+        }
+        function countDown() {
+           let timeDiv = document.getElementById("time");
+           let run = setInterval(function () {
+               time -=0.1;
+               timeDiv.style.width = widthTime * time/fullTime + "px";
+               if(time <= 0){
+                   clearInterval(run);
+                   gameOver();
+               }
+           },100);
+        }
+        function startGame() {
+            time = fullTime;
+            widthTime = document.getElementById("time").offsetWidth;
+            document.getElementById("score").innerHTML = "Score: "+score;
+            document.getElementById("level").innerHTML = "Level: "+level;
+            generateCalculation();
+            countDown();
+        }
+        </script> -->
+<head>
+    
+    
+    <meta charset="UTF-8">
+    <title>Easy Math</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- <style>
+        body{
+            font-family: 'Oswald', sans-serif;
+            font-size: 35px;
+            height: 100%;
+        }
+        #main{
+            width: 480px;
+            height: 800px;
+            background-color: white;
+            margin: 0 auto;
+        }
+        h1{
+            background-color: beige;
+            text-align: center;
+            margin: 0 0;
+        }
+        p{
+            width: 50%;
+            float: left;
+            box-sizing: border-box;
+            height: 10%;
+            margin: 0 0;
+        }
+        #score{
+            text-align: left;
+            padding-left: 10px;
+            background-color: aqua;
+        }
+        #level{
+            text-align: right;
+            padding-right: 10px;
+            background-color:aqua;
+        }
+        #time{
+            width: 100%;
+            height: 1%;
+            background-color: rgba(255, 0, 0, 0.47);
+            float: left;
+        }
+        #calculation{
+            float: left;
+            width: 100%;
+            height: 25%;
+            background-color: aquamarine;
+            text-align: center;
+            padding: 70px 0;
+            box-sizing: border-box;
+        }
+        #result{
+            float: left;
+            width: 100%;
+            height: 10%;
+            background-color: beige;
+            text-align: center;
+        }
+        #clickArea{
+            float: left;
+            width: 100%;
+            height: 30%;
+            background-color: bisque;
+            text-align: center;
+        }
+        button{
+            width: 120px;
+            height: 120px;
+            margin: 10px;
+            font-size: 45px;
+            font-weight: bold;
+        }
+        #true{
+            color: green;
+        }
+        #false{
+            color: red;
+        }
+        </style> -->
+       
+   
+<div id="main">
+    <h1>Easy Math</h1>
+    <p id="score">1</p>
+    <p id="level">0</p>
+    <div id="word"></div>
+    <div id="time">Time</div>
+    <div id="calculation"></div>
+    <div id="result"></div>
+    
+    <div id="clickArea">
+        <button id="true" onclick="check(this.id)"><i class="fa fa-check"></i></button>
+        <button id="false" onclick="check(this.id)"><i class="fa fa-close"></i></button>
+        <!-- <button id="true" ><i class="fa fa-check"></i></button>
+        <button id="false" ><i class="fa fa-close"></i></button> -->
+    </div>
+    <audio id="correct"><source src="correct.mp3"></audio>
+    <audio id="wrong"><source src="wrong.mp3"></audio>
+</div>
+<link rel="stylesheet" href="de.css">
+<script src="ham.js"></script>
+
+</body>
